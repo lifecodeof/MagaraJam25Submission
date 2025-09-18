@@ -3,7 +3,11 @@
     "rootNamespace": "",
     "references": [
         "R3.Unity",
-        "UniTask"
+        "UniTask",
+        "Unity.InputSystem",
+        "Unity.Addressables",
+        "Unity.ResourceManager",
+        "UniTask.Addressables"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
