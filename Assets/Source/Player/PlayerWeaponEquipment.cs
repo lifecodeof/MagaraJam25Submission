@@ -4,17 +4,15 @@ using R3;
 using UnityEngine;
 
 // This class is not responsible for creating/destroying weapon objects.
-// TODO: Handle multiple weapons.
 [RequireComponent(typeof(PlayerInputManager))]
 class PlayerWeaponEquipment : MonoBehaviour
 {
     [field: SerializeField]
-    public SerializableReactiveProperty<Vector2> WeaponsDirection { get; private set; } = new(Vector2.right);
+    public SerializableReactiveProperty<Vector2> WeaponsTarget { get; private set; } = new(Vector2.right);
 
     [SerializeField]
     private Weapon startingWeapon;
 
-    // I would usually use reactive collections but its way more complex to set up.
     private readonly List<Weapon> equippedWeapons = new();
     public IReadOnlyList<Weapon> EquippedWeapons => equippedWeapons;
 
@@ -29,12 +27,12 @@ class PlayerWeaponEquipment : MonoBehaviour
 
         // Handle weapon direction updates
         Observable.CombineLatest(
-            WeaponsDirection, equippedWeaponsChanged,
-            (direction, _) => direction
+            WeaponsTarget, equippedWeaponsChanged,
+            (target, _) => target
         )
-            .Subscribe(direction =>
+            .Subscribe(target =>
                 equippedWeapons.ForEach(weapon =>
-                    weapon.transform.localRotation = Quaternion.FromToRotation(Vector2.right, direction)
+                    weapon.transform.rotation = Quaternion.FromToRotation(weapon.transform.position, target)
                 )
             )
             .AddTo(this);
@@ -54,10 +52,10 @@ class PlayerWeaponEquipment : MonoBehaviour
         var enemy = arena.FindClosestEnemy(transform.position);
         if (enemy != null)
         {
-            Vector2 direction = (enemy.transform.position - transform.position).normalized;
-            WeaponsDirection.Value = direction;
             foreach (var weapon in equippedWeapons.Where(w => w.CanFire()))
-                weapon.Fire(WeaponsDirection.Value);
+            {
+                weapon.Fire();
+            }
         }
     }
 

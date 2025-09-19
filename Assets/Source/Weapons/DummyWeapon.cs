@@ -8,8 +8,8 @@ class DummyWeapon : Weapon
 
     public override float Cooldown => 0.5f;
 
-    protected override void OnFire(Vector2 direction)
+    protected override void OnFire(Quaternion direction)
     {
-        Instantiate(projectilePrefab, transform.position, Quaternion.FromToRotation(Vector2.right, direction));
+        Instantiate(projectilePrefab, transform.position, direction);
     }
 }

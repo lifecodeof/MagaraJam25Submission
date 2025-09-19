@@ -7,16 +7,16 @@ abstract class Weapon : MonoBehaviour
 
     public float LastFireTime { get; private set; } = 0f;
 
-    public void Fire(Vector2 direction)
+    public void Fire()
     {
         LastFireTime = Time.time;
-        OnFire(direction);
+        OnFire(transform.rotation);
     }
 
     // based on cooldown
     public virtual bool CanFire() => Time.time - LastFireTime >= Cooldown;
 
-    protected abstract void OnFire(Vector2 direction);
+    protected abstract void OnFire(Quaternion direction);
 
     // Inspector buttons
     [Button(enabledMode: EButtonEnableMode.Playmode)]
