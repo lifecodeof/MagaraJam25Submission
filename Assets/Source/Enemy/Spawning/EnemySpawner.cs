@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using R3;
 using UnityEngine;
 
+// TODO: Make spawn rate scale with time survived and player level
+
 class EnemySpawner : MonoBehaviour
 {
     public SerializableReactiveProperty<float> SpawnInterval = new(5f);
