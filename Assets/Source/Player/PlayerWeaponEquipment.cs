@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using R3;
 using UnityEngine;
 
@@ -7,47 +9,43 @@ using UnityEngine;
 class PlayerWeaponEquipment : MonoBehaviour
 {
     [field: SerializeField]
-    public SerializableReactiveProperty<float> WeaponHoldPointOffset { get; private set; } = new(1f);
+    public SerializableReactiveProperty<Vector2> WeaponsDirection { get; private set; } = new(Vector2.right);
 
-    [field: SerializeField]
-    public SerializableReactiveProperty<Vector2> WeaponDirection { get; private set; } = new(Vector2.right);
+    [SerializeField]
+    private Weapon startingWeapon;
 
-    /// <summary>nullable</summary>
-    [field: SerializeField]
-    public SerializableReactiveProperty<Weapon> EquippedWeapon { get; private set; } = new(null);
+    // I would usually use reactive collections but its way more complex to set up.
+    private readonly List<Weapon> equippedWeapons = new();
+    public IReadOnlyList<Weapon> EquippedWeapons => equippedWeapons;
 
-    // Weapon hold point with flipping taken into account.
-    public Observable<Vector2> WeaponHoldPointRelative =>
-        Observable.CombineLatest( // Whichever changes first
-            WeaponHoldPointOffset, WeaponDirection,
-            (offset, direction) => (offset, direction)
-        ).Select(t => t.offset * t.direction);
+    // This is the reactive equivalent of an event.
+    private readonly Subject<Unit> equippedWeaponsChanged = new();
 
     private Arena arena;
-    private float lastFireTime;
 
     void Awake()
     {
         arena = Helpers.FindRequired<Arena>();
 
-        // Handle relative weapon position updates
-        Observable.CombineLatest(
-            WeaponHoldPointRelative, EquippedWeapon,
-            (position, weapon) => (position, weapon)
-        )
-            .Where(t => t.weapon != null)
-            .Subscribe(t => t.weapon.transform.localPosition = t.position)
-            .AddTo(this);
-
         // Handle weapon direction updates
         Observable.CombineLatest(
-            WeaponDirection, EquippedWeapon,
-            (direction, weapon) => (direction, weapon)
+            WeaponsDirection, equippedWeaponsChanged,
+            (direction, _) => direction
         )
-            .Where(t => t.weapon != null)
-            .Subscribe(t =>
-                t.weapon.transform.localRotation = Quaternion.FromToRotation(Vector2.right, t.direction)
+            .Subscribe(direction =>
+                equippedWeapons.ForEach(weapon =>
+                    weapon.transform.localRotation = Quaternion.FromToRotation(Vector2.right, direction)
+                )
             )
+            .AddTo(this);
+
+        if (startingWeapon != null) EquipWeapon(startingWeapon);
+
+        // TODO: Find better place to put this
+        // For demo, equip weapon on every 3 enemy kill
+        Helpers.FindRequired<PlayerStateManager>()
+            .Level
+            .Subscribe(_ => EquipWeapon(Instantiate(startingWeapon)))
             .AddTo(this);
     }
 
@@ -57,21 +55,59 @@ class PlayerWeaponEquipment : MonoBehaviour
         if (enemy != null)
         {
             Vector2 direction = (enemy.transform.position - transform.position).normalized;
-            WeaponDirection.Value = direction;
-            TryFireWeapon();
+            WeaponsDirection.Value = direction;
+            foreach (var weapon in equippedWeapons.Where(w => w.CanFire()))
+                weapon.Fire(WeaponsDirection.Value);
         }
     }
 
-    void TryFireWeapon()
+    private IEnumerable<Vector2> DistributePointsIn2Columns(int count)
     {
-        var weapon = EquippedWeapon.Value;
-        if (weapon != null)
+        int half = (count + 1) / 2;
+        float spacing = 0.5f; // Spacing between weapons
+        for (int i = 0; i < count; i++)
         {
-            if (Time.time - lastFireTime >= weapon.Cooldown)
-            {
-                weapon.Fire(WeaponDirection.Value);
-                lastFireTime = Time.time;
-            }
+            int column = i < half ? -1 : 1; // Left or right column
+            int indexInColumn = i < half ? i : i - half;
+            float yOffset = (indexInColumn - (half - 1) / 2f) * spacing;
+            yield return new Vector2(column * 0.5f, yOffset);
         }
+    }
+
+    void RepositionWeapons()
+    {
+        var pairs = Enumerable.Zip(
+            DistributePointsIn2Columns(equippedWeapons.Count),
+            equippedWeapons,
+            (point, weapon) => (point, weapon)
+        );
+        foreach (var (point, weapon) in pairs)
+            weapon.transform.localPosition = point;
+    }
+
+    public void EquipWeapon(Weapon weapon)
+    {
+        if (equippedWeapons.Contains(weapon)) return;
+
+        equippedWeapons.Add(weapon);
+        weapon.transform.SetParent(transform);
+
+        RepositionWeapons();
+
+        // Fire equippedWeaponsChanged event
+        equippedWeaponsChanged.OnNext(Unit.Default);
+    }
+
+    public void UnequipWeapon(Weapon weapon)
+    {
+        if (!equippedWeapons.Contains(weapon)) return;
+
+        equippedWeapons.Remove(weapon);
+        weapon.transform.SetParent(null);
+
+        RepositionWeapons();
+
+        // Fire equippedWeaponsChanged event
+        equippedWeaponsChanged.OnNext(Unit.Default);
     }
 }

@@ -28,6 +28,8 @@ abstract class Enemy : MonoBehaviour
                 // disable collider
                 if (TryGetComponent<Collider2D>(out var collider))
                     collider.enabled = false;
+
+                Events.EnemyKilled.OnNext(Unit.Default);
             })
             .AddTo(this);
     }

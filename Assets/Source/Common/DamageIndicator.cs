@@ -46,6 +46,7 @@ class DamageIndicator : MonoBehaviour
         go.transform.position = obj.transform.position;
         var indicator = go.AddComponent<DamageIndicator>();
         var text = indicator.textMesh = go.AddComponent<TextMeshPro>();
+        text.renderer.sortingLayerName = "Indicator";
         text.fontMaterial = fontMaterial;
         text.text = damage.Amount.ToString();
         text.fontSize = fontSize;
