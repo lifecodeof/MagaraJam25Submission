@@ -47,7 +47,7 @@ jobs:
         with:
           allowDirtyBuild: true
           targetPlatform: StandaloneWindows64
-          customParameters: -batchmode -executeMethod NugetForUnity.NugetHelper.Restore
+          customParameters: -executeMethod NugetForUnity.NugetHelper.Restore
 
       # Build Unity project
       - name: Build Unity Project
