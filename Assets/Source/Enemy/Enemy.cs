@@ -12,7 +12,7 @@ abstract class Enemy : MonoBehaviour
     public virtual bool FollowsPlayer { get; protected set; } = true;
     public virtual float Speed { get; protected set; } = 1f;
 
-    public virtual Damage Damage => new Damage.Physical(1, new DamageSource.Enemy(this));
+    public virtual Damage Damage => new(1);
 
     public Health Health { get; private set; }
 

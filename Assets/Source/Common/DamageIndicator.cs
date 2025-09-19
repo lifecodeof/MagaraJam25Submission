@@ -17,12 +17,6 @@ class DamageIndicator : MonoBehaviour
     private TextMeshPro textMesh;
     private float opacity = 1f;
 
-    private static Color GetColor(Damage damage) => damage switch
-    {
-        Damage.Physical => Color.yellow,
-        _ => Color.red,
-    };
-
     public static void IndicateDamage(GameObject obj, Damage damage)
     {
         if (indicators.TryGetValue(obj, out var existing))
@@ -52,7 +46,7 @@ class DamageIndicator : MonoBehaviour
         text.fontSize = fontSize;
         text.alignment = TextAlignmentOptions.Center;
         text.verticalAlignment = VerticalAlignmentOptions.Middle;
-        text.color = GetColor(damage);
+        text.color = Color.yellow;
         text.outlineColor = Color.black;
         text.outlineWidth = outlineWidth;
         indicators.Add(obj, indicator);
@@ -71,7 +65,6 @@ class DamageIndicator : MonoBehaviour
     void AddDamage(Damage damage)
     {
         textMesh.text = (int.Parse(textMesh.text) + damage.Amount).ToString();
-        textMesh.color = GetColor(damage);
         opacity = 1f;
     }
 }

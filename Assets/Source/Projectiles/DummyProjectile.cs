@@ -1,13 +1,10 @@
-using R3.Triggers;
-using R3;
 using UnityEngine;
-using System;
 
 class DummyProjectile : Projectile
 {
     public float Lifetime = 5f;
     public float Speed = 10f;
-    private Damage Damage => new Damage.Physical(10, new DamageSource.TODO());
+    private Damage Damage => new(10);
 
     void Update()
     {
