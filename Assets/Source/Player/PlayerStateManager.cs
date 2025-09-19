@@ -12,6 +12,8 @@ class PlayerStateManager : MonoBehaviour
     [field: SerializeField]
     public SerializableReactiveProperty<int> Xp { get; private set; } = new(0);
 
+    public static int MaxXpForLevel(int level) => level * 100;
+
     void Awake()
     {
         var health = GetComponent<Health>();
@@ -24,7 +26,7 @@ class PlayerStateManager : MonoBehaviour
             .AddTo(this);
 
         Xp
-            .Where(xp => xp >= Level.Value * 100)
+            .Where(xp => xp >= MaxXpForLevel(Level.Value))
             .Subscribe(_ =>
             {
                 Level.Value += 1;

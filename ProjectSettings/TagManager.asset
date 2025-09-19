@@ -53,5 +53,8 @@ TagManager:
   - name: Weapon
     uniqueID: 2891567105
     locked: 0
+  - name: Indicator
+    uniqueID: 4244218407
+    locked: 0
   m_RenderingLayers:
   - Default
