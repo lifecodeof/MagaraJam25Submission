@@ -16,11 +16,6 @@ public static class Helpers
         return obj;
     }
 
-    public static T GetAddressable<T>(string address)
-    {
-        return Addressables.LoadAssetAsync<T>(address).WaitForCompletion();
-    }
-
     public static Observable<bool> WhereTrue(this Observable<bool> observable)
     {
         return observable.Where(b => b);
