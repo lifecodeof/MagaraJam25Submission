@@ -1,9 +1,12 @@
+using DG.Tweening;
 using R3;
+using UnityEditor;
 using UnityEngine;
 
 // TODO: Handle death
 
 [RequireComponent(typeof(Health))]
+[RequireComponent(typeof(SpriteRenderer))]
 abstract class Enemy : MonoBehaviour
 {
     public virtual bool FollowsPlayer { get; protected set; } = true;
@@ -30,6 +33,13 @@ abstract class Enemy : MonoBehaviour
                     collider.enabled = false;
 
                 Events.EnemyKilled.OnNext(Unit.Default);
+
+                // dotween fade out and destroy
+                var sr = GetComponent<SpriteRenderer>();
+
+                DOTween.ToAlpha(
+                    () => sr.color, c => sr.color = c, 0, 1f
+                ).OnComplete(() => Destroy(gameObject));
             })
             .AddTo(this);
     }
