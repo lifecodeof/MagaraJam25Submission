@@ -222,6 +222,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 612bf5ff5aa43e04f8c19c55fd5d43a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Main::DummyWeapon
+--- !u!1 &206155964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 206155967}
+  - component: {fileID: 206155966}
+  - component: {fileID: 206155965}
+  m_Layer: 0
+  m_Name: Arena
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &206155965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206155964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 910ee3979e37dc14abfa099b6a9ad8f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Main::Arena
+  <Extents>k__BackingField: {x: 32.53, y: 19.35}
+  <Center>k__BackingField: {x: 0, y: 0}
+--- !u!114 &206155966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206155964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6d2c8b665cc28a4aa40701b6f928aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Main::EnemySpawner
+  SpawnInterval:
+    value: 5
+  SpawnCount:
+    value: 1
+  enemyPrefab: {fileID: 2134257291930164576, guid: ccace6b02ce005449aa6be12d03643b1, type: 3}
+--- !u!4 &206155967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206155964}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,11 +659,12 @@ MonoBehaviour:
   <WeaponDirection>k__BackingField:
     value: {x: 1, y: 0}
   <EquippedWeapon>k__BackingField:
-    value: {fileID: 126953201}
+    value: {fileID: 126953204}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
+  - {fileID: 206155967}
   - {fileID: 1133226229}

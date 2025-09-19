@@ -1,12 +1,12 @@
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerEquippedWeapon))]
+[RequireComponent(typeof(PlayerWeaponEquipment))]
 class PlayerWeaponManager : MonoBehaviour
 {
-    public PlayerEquippedWeapon EquippedWeapon { get; private set; }
+    public PlayerWeaponEquipment EquippedWeapon { get; private set; }
 
     void Awake()
     {
-        EquippedWeapon = GetComponent<PlayerEquippedWeapon>();
+        EquippedWeapon = GetComponent<PlayerWeaponEquipment>();
     }
 }

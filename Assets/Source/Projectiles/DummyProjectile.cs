@@ -8,6 +8,6 @@ class DummyProjectile : Projectile
 
     void Update()
     {
-        transform.Translate(Speed * Time.deltaTime * Vector2.up);
+        transform.Translate(Speed * Time.deltaTime * Vector2.right);
     }
 }

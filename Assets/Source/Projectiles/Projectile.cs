@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
+// TODO: Use prefabs instead of addressables
+
 [RequireComponent(typeof(SpriteRenderer))]
 abstract class Projectile : MonoBehaviour
 {

@@ -15,8 +15,13 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: c728c58d1e8a3db4aa15b4b70e524cec
   m_SerializeEntries:
+  - m_GUID: 227cf5ccfb4cbc14a864b4f05244cb19
+    m_Address: Projectiles/Dummy
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9f225ce99598da0479e38c20158188ca
-    m_Address: Weapons/DummyGun
+    m_Address: Weapons/Dummy
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

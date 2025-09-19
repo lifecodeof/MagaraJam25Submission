@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
+// TODO: Use prefabs instead of addressables
+
 [RequireComponent(typeof(SpriteRenderer))]
 abstract class Weapon : MonoBehaviour
 {
@@ -8,6 +10,7 @@ abstract class Weapon : MonoBehaviour
     public Sprite Sprite { get; private set; }
 
     public abstract string SpriteAddress { get; }
+    public abstract float Cooldown { get; }
 
     void Awake()
     {
@@ -16,4 +19,11 @@ abstract class Weapon : MonoBehaviour
         Sprite = Addressables.LoadAssetAsync<Sprite>(SpriteAddress).WaitForCompletion();
         SpriteRenderer.sprite = Sprite;
     }
+
+    public void Fire(Vector2 direction)
+    {
+        OnFire(direction);
+    }
+
+    protected abstract void OnFire(Vector2 direction);
 }
