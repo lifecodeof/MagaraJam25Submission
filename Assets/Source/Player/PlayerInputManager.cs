@@ -2,7 +2,7 @@ using R3;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(SpriteRenderer)), RequireComponent(typeof(PlayerWeaponEquipment))]
+[RequireComponent(typeof(SpriteRenderer)), RequireComponent(typeof(SinglePlayerWeaponManager))]
 class PlayerInputManager : MonoBehaviour
 {
     public float Speed = 5f;

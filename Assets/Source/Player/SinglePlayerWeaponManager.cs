@@ -5,13 +5,10 @@ using UnityEngine;
 
 // This class is not responsible for creating/destroying weapon objects.
 [RequireComponent(typeof(PlayerInputManager))]
-class PlayerWeaponEquipment : MonoBehaviour
+class SinglePlayerWeaponManager : MonoBehaviour
 {
     [field: SerializeField]
     public SerializableReactiveProperty<Vector2> WeaponsTarget { get; private set; } = new(Vector2.right);
-
-    [SerializeField]
-    private Weapon startingWeapon;
 
     private readonly List<Weapon> equippedWeapons = new();
     public IReadOnlyList<Weapon> EquippedWeapons => equippedWeapons;
@@ -35,15 +32,6 @@ class PlayerWeaponEquipment : MonoBehaviour
                     weapon.transform.rotation = Quaternion.FromToRotation(weapon.transform.position, target)
                 )
             )
-            .AddTo(this);
-
-        if (startingWeapon != null) EquipWeapon(startingWeapon);
-
-        // TODO: Remove this
-        // For demo, equip weapon on every 3 enemy kill
-        Helpers.FindRequired<PlayerStateManager>()
-            .Level.Skip(1)
-            .Subscribe(_ => EquipWeapon(Instantiate(startingWeapon)))
             .AddTo(this);
     }
 
