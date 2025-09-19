@@ -7,12 +7,19 @@ using UnityEngine;
 class PlayerStateManager : MonoBehaviour
 {
     [field: SerializeField]
-    public SerializableReactiveProperty<int> Level { get; private set; } = new(1);
+    public SerializableReactiveProperty<int> Level { get; private set; } = new(0);
 
     [field: SerializeField]
     public SerializableReactiveProperty<int> Xp { get; private set; } = new(0);
 
-    public static int MaxXpForLevel(int level) => level * 100;
+    [field: SerializeField]
+    public SerializableReactiveProperty<int> SpentSkillPoints { get; private set; } = new(0);
+
+    public Observable<bool> CanSpendSkillPoint =>
+        Observable.CombineLatest(Level, SpentSkillPoints)
+            .Select(t => t[0] > t[1]);
+
+    public static int MaxXpForLevel(int level) => (level + 1) * 100;
 
     void Awake()
     {

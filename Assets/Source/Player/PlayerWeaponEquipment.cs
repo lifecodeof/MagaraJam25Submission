@@ -41,10 +41,10 @@ class PlayerWeaponEquipment : MonoBehaviour
 
         if (startingWeapon != null) EquipWeapon(startingWeapon);
 
-        // TODO: Find better place to put this
+        // TODO: Remove this
         // For demo, equip weapon on every 3 enemy kill
         Helpers.FindRequired<PlayerStateManager>()
-            .Level
+            .Level.Skip(1)
             .Subscribe(_ => EquipWeapon(Instantiate(startingWeapon)))
             .AddTo(this);
     }
