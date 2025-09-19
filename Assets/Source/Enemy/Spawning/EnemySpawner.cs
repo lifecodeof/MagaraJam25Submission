@@ -17,6 +17,8 @@ class EnemySpawner : MonoBehaviour
         mainCamera = Camera.main;
         arena = Helpers.FindRequired<Arena>();
 
+        SpawnEnemies(SpawnCount.Value);
+
         // Spawn enemies
         // Of course, this could be done with update function, but this handles every property change.
         SpawnInterval

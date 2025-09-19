@@ -1,3 +1,4 @@
+using R3;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -18,5 +19,10 @@ public static class Helpers
     public static T GetAddressable<T>(string address)
     {
         return Addressables.LoadAssetAsync<T>(address).WaitForCompletion();
+    }
+
+    public static Observable<bool> WhereTrue(this Observable<bool> observable)
+    {
+        return observable.Where(b => b);
     }
 }

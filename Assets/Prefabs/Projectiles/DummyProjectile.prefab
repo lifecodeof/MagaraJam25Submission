@@ -157,7 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02969fde257120643b1be6104c44601a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Main::DummyProjectile
-  Speed: 10
+  Lifetime: 5
+  Speed: 15
 --- !u!61 &156645270307639532
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -188,7 +189,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -196,7 +197,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 0.8, y: 0.4}
+    oldSize: {x: 0.5, y: 0.25}
     newSize: {x: 0.8, y: 0.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

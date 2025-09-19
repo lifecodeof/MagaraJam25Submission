@@ -9,7 +9,7 @@ class PlayerLifecycleManager : MonoBehaviour
     void Awake()
     {
         var health = GetComponent<Health>();
-        health.IsDead.Where(b => b)
+        health.IsDead.WhereTrue()
             .Subscribe(_ => Debug.Log("game over"))
             .AddTo(this);
     }

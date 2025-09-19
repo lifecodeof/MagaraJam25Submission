@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using R3;
 using UnityEngine;
 
 class Arena : MonoBehaviour
@@ -12,6 +14,7 @@ class Arena : MonoBehaviour
     [field: SerializeField]
     private List<Enemy> enemies;
     public IReadOnlyList<Enemy> Enemies => enemies;
+    private Dictionary<Enemy, IDisposable> enemySubscriptions = new();
 
     private void OnDrawGizmosSelected()
     {
@@ -22,7 +25,25 @@ class Arena : MonoBehaviour
     public void RegisterEnemy(Enemy enemy)
     {
         if (!enemies.Contains(enemy))
+        {
             enemies.Add(enemy);
+            enemySubscriptions[enemy] = enemy.Health.IsDead
+                .WhereTrue()
+                .Subscribe(_ => UnregisterEnemy(enemy));
+        }
+    }
+
+    public void UnregisterEnemy(Enemy enemy)
+    {
+        if (enemies.Contains(enemy))
+        {
+            enemies.Remove(enemy);
+            if (enemySubscriptions.TryGetValue(enemy, out var subscription))
+            {
+                subscription.Dispose();
+                enemySubscriptions.Remove(enemy);
+            }
+        }
     }
 
     /// <returns>nullable</returns>
