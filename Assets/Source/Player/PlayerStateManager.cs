@@ -24,6 +24,8 @@ class PlayerStateManager : MonoBehaviour
     void Awake()
     {
         var health = GetComponent<Health>();
+        var skillTreeScreen = Helpers.FindRequired<SkillTreeCanvas>();
+
         health.IsDead.WhereTrue()
             .Subscribe(_ => Debug.Log("game over"))
             .AddTo(this);
@@ -39,6 +41,10 @@ class PlayerStateManager : MonoBehaviour
                 Level.Value += 1;
                 Xp.Value = 0;
             })
+            .AddTo(this);
+
+        CanSpendSkillPoint
+            .Subscribe(canSpend => skillTreeScreen.IsOpen.Value = canSpend)
             .AddTo(this);
     }
 }

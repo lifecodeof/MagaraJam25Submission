@@ -4,7 +4,7 @@ using UnityEngine;
 
 class SkillPointIndicator : MonoBehaviour
 {
-    private readonly static string template = "{0} yetenek puanı var. Yetenek ağacını açmak için 'E' tuşuna basın.";
+    private readonly static string template = "{0} yetenek puanı harcanabilir";
 
     [SerializeField]
     private TMP_Text text;
