@@ -12,16 +12,11 @@ class PlayerInputManager : MonoBehaviour
     public SerializableReactiveProperty<bool> IsFlipped { get; private set; } = new(false);
 
     private InputAction moveAction;
-    private InputAction fireAction;
-    private PlayerWeaponEquipment weaponEquipment;
 
     void Awake()
     {
         moveAction = InputSystem.actions.FindAction("Move");
         moveAction.Enable();
-        fireAction = InputSystem.actions.FindAction("Fire");
-        fireAction.Enable();
-        weaponEquipment = GetComponent<PlayerWeaponEquipment>();
 
         var spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -42,12 +37,6 @@ class PlayerInputManager : MonoBehaviour
             var isFlipped = translation.x < 0;
             if (isFlipped != IsFlipped.Value)
                 IsFlipped.Value = isFlipped;
-        }
-
-        // Handle firing
-        if (fireAction.IsPressed())
-        {
-            weaponEquipment.TryFireWeapon();
         }
     }
 }

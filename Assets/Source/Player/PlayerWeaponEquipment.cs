@@ -58,10 +58,11 @@ class PlayerWeaponEquipment : MonoBehaviour
         {
             Vector2 direction = (enemy.transform.position - transform.position).normalized;
             WeaponDirection.Value = direction;
+            TryFireWeapon();
         }
     }
 
-    public void TryFireWeapon()
+    void TryFireWeapon()
     {
         var weapon = EquippedWeapon.Value;
         if (weapon != null)
