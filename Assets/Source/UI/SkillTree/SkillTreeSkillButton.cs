@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using NaughtyAttributes;
 using R3;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +9,6 @@ using UnityEngine.UI;
 class SkillTreeSkillButton : MonoBehaviour
 {
     // Below 2 fields do not react to playtime changes in the inspector. Because I'm too lazy to make it reactive rn
-
     [SerializeField]
     private List<SkillTreeSkillButton> prerequisites = new();
     public IReadOnlyList<SkillTreeSkillButton> Prerequisites => prerequisites;
@@ -17,10 +17,17 @@ class SkillTreeSkillButton : MonoBehaviour
     public int Cost { get; private set; } = 1;
 
     [field: SerializeField]
+    public string WeaponName { get; private set; }
+
+    [field: SerializeField]
     public SerializableReactiveProperty<bool> IsUnlocked { get; private set; } = new(false);
 
     void Awake()
     {
+        if (string.IsNullOrEmpty(WeaponName))
+            Debug.LogError($"WeaponName is not set for {name}");
+
+        var playerWeaponManager = Helpers.FindRequired<PlayerWeaponManager>();
         var playerStateManager = Helpers.FindRequired<PlayerStateManager>();
         var button = GetComponent<Button>();
 
@@ -46,7 +53,8 @@ class SkillTreeSkillButton : MonoBehaviour
             {
                 IsUnlocked.Value = true;
                 playerStateManager.SpentSkillPoints.Value += Cost;
-                Events.SkillUnlocked.OnNext(this);
+                var weapon = GameObject.Find(WeaponName).GetComponent<Weapon>();
+                playerWeaponManager.EquipAndUpgradeWeapon(weapon);
             })
             .AddTo(this);
 

@@ -6,9 +6,12 @@ abstract class Weapon : MonoBehaviour
     [SerializeField, Required]
     protected GameObject projectilePrefab;
 
-    public int Tier { get; set; } = 1;
+    public bool IsEquipped => Tier != 0;
 
-    public abstract float Cooldown { get; }
+    public int Tier { get; set; } = 0;
+
+    [field: SerializeField]
+    public float Cooldown { get; private set; } = 1f;
 
     public float LastFireTime { get; private set; } = 0f;
 
@@ -23,7 +26,7 @@ abstract class Weapon : MonoBehaviour
 
     protected virtual void OnFire(Quaternion direction)
     {
-        Instantiate(projectilePrefab, transform.position, direction);
+        Instantiate(projectilePrefab, transform.position, direction * Quaternion.Euler(0, 0, 90));
     }
 
     // Calculation helpers for tiered stats

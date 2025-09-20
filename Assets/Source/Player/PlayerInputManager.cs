@@ -1,8 +1,8 @@
+using System.Linq;
 using R3;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(SpriteRenderer)), RequireComponent(typeof(SinglePlayerWeaponManager))]
 class PlayerInputManager : MonoBehaviour
 {
     public float Speed = 5f;
@@ -18,11 +18,11 @@ class PlayerInputManager : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         moveAction.Enable();
 
-        var spriteRenderer = GetComponent<SpriteRenderer>();
+        var spriteRenderers = GetComponentsInChildren<SpriteRenderer>().ToList();
 
         // Handle flipping
         IsFlipped
-            .Subscribe(flipped => spriteRenderer.flipX = flipped)
+            .Subscribe(flipped => spriteRenderers.ForEach(sr => sr.flipX = flipped))
             .AddTo(this);
     }
 

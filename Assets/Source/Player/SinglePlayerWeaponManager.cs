@@ -4,7 +4,6 @@ using R3;
 using UnityEngine;
 
 // This class is not responsible for creating/destroying weapon objects.
-[RequireComponent(typeof(PlayerInputManager))]
 class SinglePlayerWeaponManager : MonoBehaviour
 {
     [field: SerializeField]
@@ -28,9 +27,12 @@ class SinglePlayerWeaponManager : MonoBehaviour
             (target, _) => target
         )
             .Subscribe(target =>
-                equippedWeapons.ForEach(weapon =>
-                    weapon.transform.rotation = Quaternion.FromToRotation(weapon.transform.position, target)
-                )
+                equippedWeapons.ForEach(weapon => 
+                {
+                    Vector2 direction = (target - (Vector2)weapon.transform.position).normalized;
+                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+                    weapon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                })
             )
             .AddTo(this);
     }
@@ -40,6 +42,7 @@ class SinglePlayerWeaponManager : MonoBehaviour
         var enemy = arena.FindClosestEnemy(transform.position);
         if (enemy != null)
         {
+            WeaponsTarget.Value = enemy.transform.position;
             foreach (var weapon in equippedWeapons.Where(w => w.CanFire()))
             {
                 weapon.Fire();

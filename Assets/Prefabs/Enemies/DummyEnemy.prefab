@@ -48,6 +48,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 507459175896980800, guid: ccace6b02ce005449aa6be12d03643b1, type: 3}
+      propertyPath: <Max>k__BackingField.value
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 507459175896980800, guid: ccace6b02ce005449aa6be12d03643b1, type: 3}
+      propertyPath: <Current>k__BackingField.value
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 863221260216910358, guid: ccace6b02ce005449aa6be12d03643b1, type: 3}
       propertyPath: m_Name
       value: DummyEnemy

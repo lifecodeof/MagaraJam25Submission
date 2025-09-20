@@ -77,3 +77,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c284184908728224c9de99cba0e31cff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Main::FireProjectile
+  ExplosionPrefab: {fileID: 8851035372811007137, guid: 41be6086d5ebdc446a56e4fda1b0ace3, type: 3}
+  Lifetime: 5
+  Speed: 10

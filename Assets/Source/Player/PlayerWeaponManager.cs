@@ -11,30 +11,20 @@ class PlayerWeaponManager : MonoBehaviour
     void Start()
     {
         WeaponManagers = FindObjectsByType<SinglePlayerWeaponManager>(FindObjectsSortMode.None);
-        if (startingWeapon != null) EquipWeapon(startingWeapon);
+        if (startingWeapon != null) EquipAndUpgradeWeapon(startingWeapon);
     }
 
     public bool HasWeapon(Weapon weapon) => WeaponManagers.Any(m => m.EquippedWeapons.Contains(weapon));
 
-    public void EquipWeapon(Weapon weapon)
+    public void EquipAndUpgradeWeapon(Weapon weapon)
     {
+        weapon.Tier += 1;
         if (HasWeapon(weapon)) return;
 
         var managerWithLeastWeapons = WeaponManagers
             .OrderBy(m => m.EquippedWeapons.Count)
             .First();
 
-        managerWithLeastWeapons.EquipWeapon(Instantiate(weapon));
-    }
-
-    public void UnequipWeapon(Weapon weapon)
-    {
-        foreach (var manager in WeaponManagers)
-        {
-            if (manager.EquippedWeapons.Contains(weapon))
-            {
-                manager.UnequipWeapon(weapon);
-            }
-        }
+        managerWithLeastWeapons.EquipWeapon(weapon);
     }
 }
