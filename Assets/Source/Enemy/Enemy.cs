@@ -1,4 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
+using NaughtyAttributes;
 using R3;
 using UnityEditor;
 using UnityEngine;
@@ -12,15 +15,23 @@ abstract class Enemy : MonoBehaviour
     public virtual bool FollowsPlayer { get; protected set; } = true;
     public virtual float Speed { get; protected set; } = 1f;
 
+    public HashSet<GameObject> KnockBackEffectors = new();
+
     public virtual Damage Damage => new(1);
 
     public Health Health { get; private set; }
 
-    private GameObject player;
+    private GameObject playersRoot;
+
+    [field: SerializeField, ReadOnly]
+    private float lastAttackTime = 0f;
+
+    [field: SerializeField]
+    public float AttackCooldown { get; private set; } = 1f;
 
     public virtual void Awake()
     {
-        player = Helpers.FindRequired<PlayerInputManager>().gameObject;
+        playersRoot = GameObject.FindGameObjectWithTag("PlayersRoot");
         Health = GetComponent<Health>();
 
         Health.IsDead.WhereTrue()
@@ -50,7 +61,11 @@ abstract class Enemy : MonoBehaviour
 
         if (FollowsPlayer)
         {
-            var direction = (player.transform.position - transform.position).normalized;
+            var direction = (playersRoot.transform.position - transform.position).normalized;
+
+            var hasKnockbackEffector = KnockBackEffectors.Any(effector => effector != null);
+            if (hasKnockbackEffector) direction = -direction;
+
             transform.Translate(Speed * Time.deltaTime * direction);
         }
     }
@@ -64,5 +79,20 @@ abstract class Enemy : MonoBehaviour
     protected virtual void OnTakeDamage(Damage damage)
     {
         Health.Current.Value -= damage.Amount;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (
+            collision.gameObject.CompareTag("Player") &&
+            collision.gameObject.TryGetComponent<Health>(out var playerHealth)
+        )
+        {
+            if (Time.time - lastAttackTime >= AttackCooldown)
+            {
+                lastAttackTime = Time.time;
+                playerHealth.Current.Value -= Damage.Amount;
+            }
+        }
     }
 }
