@@ -13,7 +13,7 @@ class DummyProjectile : Projectile
         if (Lifetime <= 0f) Destroy(gameObject);
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnCollisionEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent<Enemy>(out var enemy))
             enemy.TakeDamage(Damage);
