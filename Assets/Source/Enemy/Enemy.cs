@@ -81,7 +81,7 @@ abstract class Enemy : MonoBehaviour
         Health.Current.Value -= damage.Amount;
     }
 
-    void OnCollisionEnter2D(Collider2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (
             collision.gameObject.CompareTag("Player") &&
