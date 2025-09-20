@@ -50,6 +50,8 @@ class PlayerStateManager : MonoBehaviour
                 .Append(Observable.Return(true)) // in case there are no skills
         ).Select(states => states.All(s => s));
 
+        isEverySkillUnlocked.Subscribe(b => Debug.Log(b)).AddTo(this);
+
         Observable.CombineLatest(
             CanSpendSkillPoint, isEverySkillUnlocked,
             (canSpend, allUnlocked) => canSpend && !allUnlocked
