@@ -18,9 +18,6 @@ class FireProjectileExplosion : MonoBehaviour
     private float FadeDuration = 0.3f;
 
     [SerializeField, ReadOnly]
-    private float currentRadius = 0f;
-
-    [SerializeField, ReadOnly]
     private List<Enemy> affectedEnemies = new();
 
     void Start()
