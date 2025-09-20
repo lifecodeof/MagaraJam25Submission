@@ -2708,6 +2708,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 63215775}
     - target: {fileID: 978511132368805430, guid: 57e354112a212294a832205e45e403be, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 978511132368805430, guid: 57e354112a212294a832205e45e403be, type: 3}
       propertyPath: m_Direction
       value: 1
       objectReference: {fileID: 0}
