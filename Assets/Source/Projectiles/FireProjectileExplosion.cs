@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using NaughtyAttributes;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 class FireProjectileExplosion : MonoBehaviour
 {
     public int DamageAmount = 10;
@@ -10,7 +12,10 @@ class FireProjectileExplosion : MonoBehaviour
     private float MaxRadius = 10f;
 
     [SerializeField]
-    private float ExpansionSpeed = 20f;
+    private float ExplosionDuration = 0.3f;
+
+    [SerializeField]
+    private float FadeDuration = 0.3f;
 
     [SerializeField, ReadOnly]
     private float currentRadius = 0f;
@@ -18,15 +23,18 @@ class FireProjectileExplosion : MonoBehaviour
     [SerializeField, ReadOnly]
     private List<Enemy> affectedEnemies = new();
 
-    void Update()
+    void Start()
     {
-        currentRadius += ExpansionSpeed * Time.deltaTime;
-        transform.localScale = Vector3.one * currentRadius;
+        var sr = GetComponent<SpriteRenderer>();
 
-        if (currentRadius >= MaxRadius)
-        {
-            Destroy(gameObject);
-        }
+        transform
+            .DOScale(Vector3.one * MaxRadius, ExplosionDuration)
+            .SetEase(Ease.OutQuad)
+            .OnComplete(() =>
+                DOTween.ToAlpha(
+                    () => sr.color, c => sr.color = c, 0, FadeDuration
+                ).OnComplete(() => Destroy(gameObject))
+            );
     }
 
     void OnTriggerEnter2D(Collider2D collision)

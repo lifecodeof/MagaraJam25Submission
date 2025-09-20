@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Main::FireProjectileExplosion
   DamageAmount: 1
   MaxRadius: 10
-  ExpansionSpeed: 30
+  ExplosionDuration: 0.3
+  FadeDuration: 0.3
   currentRadius: 0
   affectedEnemies: []
