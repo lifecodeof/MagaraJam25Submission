@@ -4959,6 +4959,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8279193358475922686, guid: c404c48615e72a64cb6992f6947e9580, type: 3}
+      propertyPath: <IsUnlocked>k__BackingField.value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9129304003546314495, guid: c404c48615e72a64cb6992f6947e9580, type: 3}
       propertyPath: m_Name
       value: Fire1
@@ -5285,10 +5289,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 2560, y: 1440}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -5358,6 +5362,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 35690763}
     m_Modifications:
+    - target: {fileID: -331479088178505680, guid: 3add8ca46a94ab44c90573cfb046bead, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.75
+      objectReference: {fileID: 0}
     - target: {fileID: 6748698541448111009, guid: 3add8ca46a94ab44c90573cfb046bead, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.24

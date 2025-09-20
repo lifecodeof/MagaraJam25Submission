@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9016473274492764753, guid: ccace6b02ce005449aa6be12d03643b1, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7265813870537673704, guid: ccace6b02ce005449aa6be12d03643b1, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7265813870537673704, guid: ccace6b02ce005449aa6be12d03643b1, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 94445013464478210, guid: ccace6b02ce005449aa6be12d03643b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -85,3 +97,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d79c5ba6f41aad44391fc7cb9a956429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Main::DummyEnemy
+  lastAttackTime: 0
+  <AttackCooldown>k__BackingField: 1
