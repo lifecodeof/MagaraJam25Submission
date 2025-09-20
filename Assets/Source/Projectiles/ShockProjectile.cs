@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-class WaterProjectile : Projectile
+class ShockProjectile : Projectile
 {
     public float Lifetime = 10f;
     public float Speed = 15f;
