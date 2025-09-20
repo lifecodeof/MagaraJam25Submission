@@ -1,3 +1,4 @@
+using System.Linq;
 using R3;
 using UnityEngine;
 
@@ -43,7 +44,16 @@ class PlayerStateManager : MonoBehaviour
             })
             .AddTo(this);
 
-        CanSpendSkillPoint
+        var isEverySkillUnlocked = Observable.CombineLatest(
+            FindObjectsByType<SkillTreeSkillButton>(FindObjectsSortMode.None)
+                .Select(button => button.IsUnlocked)
+                .Append(Observable.Return(true)) // in case there are no skills
+        ).Select(states => states.All(s => s));
+
+        Observable.CombineLatest(
+            CanSpendSkillPoint, isEverySkillUnlocked,
+            (canSpend, allUnlocked) => canSpend && !allUnlocked
+        )
             .Subscribe(canSpend => skillTreeScreen.IsOpen.Value = canSpend)
             .AddTo(this);
     }
