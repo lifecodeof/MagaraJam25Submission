@@ -3,10 +3,7 @@ using System.Linq;
 using DG.Tweening;
 using NaughtyAttributes;
 using R3;
-using UnityEditor;
 using UnityEngine;
-
-// TODO: Handle death
 
 [RequireComponent(typeof(Health))]
 [RequireComponent(typeof(SpriteRenderer))]
@@ -27,7 +24,7 @@ abstract class Enemy : MonoBehaviour
     private float lastAttackTime = 0f;
 
     [field: SerializeField]
-    public float AttackCooldown { get; private set; } = 1f;
+    public float AttackCooldown { get; private set; } = 0.5f;
 
     public virtual void Awake()
     {
@@ -81,7 +78,7 @@ abstract class Enemy : MonoBehaviour
         Health.Current.Value -= damage.Amount;
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionStay2D(Collision2D collision)
     {
         if (
             collision.gameObject.CompareTag("Player") &&
