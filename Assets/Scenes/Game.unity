@@ -2040,7 +2040,7 @@ GameObject:
   - component: {fileID: 431744170}
   - component: {fileID: 431744173}
   - component: {fileID: 431744172}
-  - component: {fileID: 431744171}
+  - component: {fileID: 431744174}
   m_Layer: 5
   m_Name: LevelText
   m_TagString: Untagged
@@ -2067,18 +2067,6 @@ RectTransform:
   m_AnchoredPosition: {x: 149.75012, y: 0}
   m_SizeDelta: {x: 296.3002, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &431744171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 431744169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 859b51f111ae6b64cb6d824f5d09b94e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Main::ScoreText
 --- !u!114 &431744172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2178,6 +2166,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 431744169}
   m_CullTransparentMesh: 1
+--- !u!114 &431744174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431744169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c91a8b6c40ddf904eb08c74df1cd1fc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Main::LevelText
 --- !u!1 &441176127
 GameObject:
   m_ObjectHideFlags: 0

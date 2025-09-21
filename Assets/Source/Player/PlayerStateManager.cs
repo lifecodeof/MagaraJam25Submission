@@ -23,7 +23,9 @@ class PlayerStateManager : MonoBehaviour
         Observable.CombineLatest(Level, SpentSkillPoints)
             .Select(t => t[0] > t[1]);
 
-    public static int MaxXpForLevel(int level) => ((level + 1) ^ 2) * 100;
+    public static int MaxXpForLevel(int level) => (int)Mathf.Pow(100, level);
+
+    public Observable<bool> IsEverySkillUnlocked { get; private set; }
 
     void Start()
     {
@@ -51,15 +53,8 @@ class PlayerStateManager : MonoBehaviour
             .Append(Observable.Return(true)) // in case there are no skills
             .ToList();
 
-        var isEverySkillUnlocked = Observable
+        IsEverySkillUnlocked = Observable
             .CombineLatest(sources)
             .Select(states => states.All(s => s));
-
-        Observable.CombineLatest(
-            CanSpendSkillPoint, isEverySkillUnlocked,
-            (canSpend, allUnlocked) => canSpend && !allUnlocked
-        )
-            .Subscribe(canSpend => skillTreeScreen.IsOpen.Value = canSpend)
-            .AddTo(this);
     }
 }

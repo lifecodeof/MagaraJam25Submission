@@ -45,9 +45,12 @@ class SkillTreeCanvas : MonoBehaviour
 
         panelRectTransform = canvas.transform.GetChild(0).GetComponent<RectTransform>();
 
+        var psm = Helpers.FindRequired<PlayerStateManager>();
+
         Observable.CombineLatest(
-            IsOpen, isGameOver,
-            (isOpen, gameOver) => isOpen || gameOver
+            psm.CanSpendSkillPoint, psm.IsEverySkillUnlocked,
+             isGameOver,
+            (canSpend, allUnlocked, gameOver) => (canSpend && !allUnlocked) || gameOver
         )
             .DistinctUntilChanged()
             .Subscribe(isOpen =>
