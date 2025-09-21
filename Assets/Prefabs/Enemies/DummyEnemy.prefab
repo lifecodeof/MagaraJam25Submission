@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DummyEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3077966371105087086, guid: ccace6b02ce005449aa6be12d03643b1, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 2628796389254615351, guid: 175b54c21fa21074fa29262c245b6938, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
