@@ -3,6 +3,7 @@ using DG.Tweening;
 using NaughtyAttributes;
 using R3;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 class SkillTreeCanvas : MonoBehaviour
 {
@@ -20,6 +21,15 @@ class SkillTreeCanvas : MonoBehaviour
 
     void Awake()
     {
+        var toggleSkillTreeAction = InputSystem.actions.FindAction("Toggle Skill Tree");
+        toggleSkillTreeAction.Enable();
+        Observable.FromEvent<InputAction.CallbackContext>(
+            h => toggleSkillTreeAction.performed += h,
+            h => toggleSkillTreeAction.performed -= h
+        )
+            .Subscribe(_ => IsOpen.Value = !IsOpen.Value)
+            .AddTo(this);
+
         canvasOriginalScale = canvas.transform.localScale;
         panelRectTransform = canvas.transform.GetChild(0).GetComponent<RectTransform>();
 
