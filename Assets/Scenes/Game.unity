@@ -890,8 +890,9 @@ MonoBehaviour:
   SpawnIntervalPerScore: -0.05
   SpawnCountBase: 1
   SpawnCountPerScore: 0.1
+  EnemiesToSpawn:
+  - {fileID: 615511824276743711, guid: f79c569e4941839418d37af59e7e3843, type: 3}
   <LastSpawnTime>k__BackingField: 0
-  enemyPrefab: {fileID: 4298568866706182910, guid: f79c569e4941839418d37af59e7e3843, type: 3}
 --- !u!4 &206155967
 Transform:
   m_ObjectHideFlags: 0
@@ -965,7 +966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d864c7ab63e7f042b798321adb099d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Main::EarthWeapon
-  projectilePrefab: {fileID: 101037368352208977, guid: a3fecbff1582268459a44a9b9bfb2009, type: 3}
+  projectilePrefab: {fileID: 4251675552863716716, guid: 89b85ee9867c4cc4f811484d85f9a402, type: 3}
   <Tier>k__BackingField: 0
   <ProjectileOffset>k__BackingField: 2
   <CooldownBase>k__BackingField: 1.2
@@ -1015,7 +1016,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1403400191
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 8937847603418314618, guid: b54dc2c2f088dbb4dbfbf5c675b5e97b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1288,7 +1289,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1403400191
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -1362480512284188048, guid: b54dc2c2f088dbb4dbfbf5c675b5e97b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3751,7 +3752,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1403400191
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 2363060639502021293, guid: b54dc2c2f088dbb4dbfbf5c675b5e97b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3895,7 +3896,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1403400191
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 4595650251649180974, guid: b54dc2c2f088dbb4dbfbf5c675b5e97b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4003,7 +4004,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1403400191
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 4672467958334398990, guid: b54dc2c2f088dbb4dbfbf5c675b5e97b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

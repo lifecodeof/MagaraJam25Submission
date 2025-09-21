@@ -25,7 +25,7 @@ class PlayerStateManager : MonoBehaviour
 
     public static int MaxXpForLevel(int level) => (level + 1) * 100;
 
-    void Awake()
+    void Start()
     {
         var health = GetComponent<Health>();
         var skillTreeScreen = Helpers.FindRequired<SkillTreeCanvas>();
@@ -48,11 +48,17 @@ class PlayerStateManager : MonoBehaviour
             })
             .AddTo(this);
 
-        var isEverySkillUnlocked = Observable.CombineLatest(
-            FindObjectsByType<SkillTreeSkillButton>(FindObjectsSortMode.None)
-                .Select(button => button.IsUnlocked)
-                .Append(Observable.Return(true)) // in case there are no skills
-        ).Select(states => states.All(s => s));
+        var sources = FindObjectsByType<SkillTreeSkillButton>(
+            FindObjectsInactive.Include,
+            FindObjectsSortMode.None
+        )
+            .Select(button => button.IsUnlocked)
+            .Append(Observable.Return(true)) // in case there are no skills
+            .ToList();
+
+        var isEverySkillUnlocked = Observable
+            .CombineLatest(sources)
+            .Select(states => states.All(s => s));
 
         Observable.CombineLatest(
             CanSpendSkillPoint, isEverySkillUnlocked,
