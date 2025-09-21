@@ -1,16 +1,15 @@
 using System.Collections.Generic;
 using NaughtyAttributes;
-using R3;
 using UnityEngine;
 
 class EnemySpawner : MonoBehaviour
 {
+    public int HardModeTreshold = 25_000;
+
     public float SpawnIntervalBase = 5f;
     public float SpawnIntervalPerScore = -0.05f;
     [ShowNativeProperty]
-    public float SpawnInterval => psm?.Score.Value is int score
-        ? Mathf.Max(0.5f, SpawnIntervalBase + score * SpawnIntervalPerScore)
-        : SpawnIntervalBase;
+    public float SpawnInterval => Mathf.Max(0.5f, SpawnIntervalBase + score % HardModeTreshold * SpawnIntervalPerScore);
 
     public float SpawnCountBase = 1;
     public float SpawnCountPerScore = 0.1f;
@@ -18,12 +17,12 @@ class EnemySpawner : MonoBehaviour
     public List<Enemy> EnemiesToSpawn = new();
 
     [ShowNativeProperty]
-    public int SpawnCount => psm?.Score.Value is int score
-        ? Mathf.Max(1, Mathf.FloorToInt(SpawnCountBase + score * SpawnCountPerScore))
-        : Mathf.FloorToInt(SpawnCountBase);
+    public int SpawnCount => Mathf.Max(1, Mathf.FloorToInt(SpawnCountBase + score % HardModeTreshold * SpawnCountPerScore));
 
     [field: SerializeField]
     public float LastSpawnTime { get; private set; } = 0f;
+
+    private int score => psm?.Score.Value ?? 0;
 
     private Camera mainCamera;
     private Arena arena;
@@ -89,7 +88,10 @@ class EnemySpawner : MonoBehaviour
     {
         foreach (var spawnPoint in GetRandomPointsOnCameraBorder(count))
         {
-            var enemyPrefab = EnemiesToSpawn[Random.Range(0, EnemiesToSpawn.Count)];
+            var index = score > HardModeTreshold
+                ? (Random.value > 0.2f ? 1 : 0)
+                : 0;
+            var enemyPrefab = EnemiesToSpawn[index];
 
             var clamped = ClampToArenaBounds(spawnPoint);
             var enemy = Instantiate(enemyPrefab, clamped, Quaternion.identity);

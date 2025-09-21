@@ -886,12 +886,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d2c8b665cc28a4aa40701b6f928aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Main::EnemySpawner
+  HardModeTreshold: 25000
   SpawnIntervalBase: 2.5
   SpawnIntervalPerScore: -0.05
   SpawnCountBase: 1
   SpawnCountPerScore: 0.1
   EnemiesToSpawn:
-  - {fileID: 615511824276743711, guid: f79c569e4941839418d37af59e7e3843, type: 3}
+  - {fileID: 278745159998072047, guid: f79c569e4941839418d37af59e7e3843, type: 3}
+  - {fileID: 278745159998072047, guid: d6a74f6f482923c41a7da604b62f0818, type: 3}
   <LastSpawnTime>k__BackingField: 0
 --- !u!4 &206155967
 Transform:
