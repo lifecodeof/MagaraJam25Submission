@@ -15,7 +15,7 @@ class EnemySpawner : MonoBehaviour
     public float SpawnCountBase = 1;
     public float SpawnCountPerScore = 0.1f;
 
-    public List<Enemy> EnemiesToSpawn;
+    public List<Enemy> EnemiesToSpawn = new();
 
     [ShowNativeProperty]
     public int SpawnCount => psm?.Score.Value is int score
