@@ -969,7 +969,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 4251675552863716716, guid: 89b85ee9867c4cc4f811484d85f9a402, type: 3}
   <Tier>k__BackingField: 0
   <ProjectileOffset>k__BackingField: 2
-  <CooldownBase>k__BackingField: 1.2
+  <CooldownBase>k__BackingField: 3
   <CooldownTiered>k__BackingField: 0.2
 --- !u!212 &214857560
 SpriteRenderer:
@@ -1474,8 +1474,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 47.148926, y: 0}
-  m_SizeDelta: {x: 87.09781, y: 50}
+  m_AnchoredPosition: {x: 139.96817, y: 0}
+  m_SizeDelta: {x: 272.7361, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &337423573
 MonoBehaviour:
@@ -2040,7 +2040,7 @@ GameObject:
   - component: {fileID: 431744172}
   - component: {fileID: 431744171}
   m_Layer: 5
-  m_Name: ScoreText
+  m_Name: LevelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2062,8 +2062,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 45.148926, y: 0}
-  m_SizeDelta: {x: 87.09781, y: 50}
+  m_AnchoredPosition: {x: 149.75012, y: 0}
+  m_SizeDelta: {x: 296.3002, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &431744171
 MonoBehaviour:

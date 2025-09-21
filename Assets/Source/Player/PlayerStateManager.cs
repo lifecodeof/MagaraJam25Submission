@@ -23,7 +23,7 @@ class PlayerStateManager : MonoBehaviour
         Observable.CombineLatest(Level, SpentSkillPoints)
             .Select(t => t[0] > t[1]);
 
-    public static int MaxXpForLevel(int level) => (level + 1) * 100;
+    public static int MaxXpForLevel(int level) => ((level + 1) ^ 2) * 100;
 
     void Start()
     {
