@@ -25,8 +25,6 @@ class EnemySpawner : MonoBehaviour
     [field: SerializeField]
     public float LastSpawnTime { get; private set; } = 0f;
 
-    [SerializeField] private Enemy enemyPrefab;
-
     private Camera mainCamera;
     private Arena arena;
     private PlayerStateManager psm;
@@ -91,6 +89,8 @@ class EnemySpawner : MonoBehaviour
     {
         foreach (var spawnPoint in GetRandomPointsOnCameraBorder(count))
         {
+            var enemyPrefab = EnemiesToSpawn[Random.Range(0, EnemiesToSpawn.Count)];
+
             var clamped = ClampToArenaBounds(spawnPoint);
             var enemy = Instantiate(enemyPrefab, clamped, Quaternion.identity);
             arena.RegisterEnemy(enemy);
