@@ -7,14 +7,13 @@ using UnityEngine;
 
 [RequireComponent(typeof(Health))]
 [RequireComponent(typeof(SpriteRenderer))]
-abstract class Enemy : MonoBehaviour
+class Enemy : MonoBehaviour
 {
-    public virtual bool FollowsPlayer { get; protected set; } = true;
-    public virtual float Speed { get; protected set; } = 1f;
+    public bool FollowsPlayer = true;
+    public float Speed = 1f;
+    public int DamageAmount = 1;
 
     public HashSet<GameObject> KnockBackEffectors = new();
-
-    public virtual Damage Damage => new(1);
 
     public Health Health { get; private set; }
 
@@ -88,7 +87,7 @@ abstract class Enemy : MonoBehaviour
             if (Time.time - lastAttackTime >= AttackCooldown)
             {
                 lastAttackTime = Time.time;
-                playerHealth.Current.Value -= Damage.Amount;
+                playerHealth.Current.Value -= DamageAmount;
             }
         }
     }
