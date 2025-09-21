@@ -538,12 +538,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2278566297644842510, guid: d935b990a264e5a40b986c2c8755efa9, type: 3}
+  m_Sprite: {fileID: 1244476889673583485, guid: c0a826ac844e7224b9cb96583ae28df8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.95, y: 3.62}
+  m_Size: {x: 0.64, y: 0.23}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -587,8 +587,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.95, y: 3.62}
-    newSize: {x: 3.95, y: 3.62}
+    oldSize: {x: 0.64, y: 0.23}
+    newSize: {x: 0.64, y: 0.23}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -1017,6 +1017,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1403400191
   m_SortingLayer: 5
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 8937847603418314618, guid: b54dc2c2f088dbb4dbfbf5c675b5e97b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1289,6 +1290,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1403400191
+  m_SortingLayer: 5
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -1362480512284188048, guid: b54dc2c2f088dbb4dbfbf5c675b5e97b, type: 3}
@@ -3753,6 +3755,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1403400191
   m_SortingLayer: 5
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 2363060639502021293, guid: b54dc2c2f088dbb4dbfbf5c675b5e97b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3897,6 +3900,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1403400191
   m_SortingLayer: 5
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 4595650251649180974, guid: b54dc2c2f088dbb4dbfbf5c675b5e97b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4004,6 +4008,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1403400191
+  m_SortingLayer: 5
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 4672467958334398990, guid: b54dc2c2f088dbb4dbfbf5c675b5e97b, type: 3}

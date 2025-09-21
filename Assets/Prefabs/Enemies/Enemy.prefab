@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -9016473274492764753}
   - component: {fileID: -7265813870537673704}
   - component: {fileID: 3077966371105087086}
+  - component: {fileID: 4615907306972361016}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -107,9 +108,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Main::Health
   <Max>k__BackingField:
-    value: 50
+    value: 10
   <Current>k__BackingField:
-    value: 50
+    value: 10
 --- !u!70 &-9016473274492764753
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -184,7 +185,7 @@ Animator:
   m_GameObject: {fileID: 863221260216910358}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 2628796389254615351, guid: 175b54c21fa21074fa29262c245b6938, type: 3}
+  m_Controller: {fileID: -9126708865374250276, guid: 2e02e4e30c099044fb45bc6c3cd1f2a0, type: 3}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -196,3 +197,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4615907306972361016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863221260216910358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2209f1bc2dc57fa4d83d46ff7b66beee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Main::Enemy
+  FollowsPlayer: 1
+  Speed: 1
+  DamageAmount: 1
+  lastAttackTime: 0
+  <AttackCooldown>k__BackingField: 0.5
