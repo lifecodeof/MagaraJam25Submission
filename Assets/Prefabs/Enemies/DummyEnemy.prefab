@@ -62,11 +62,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 507459175896980800, guid: ccace6b02ce005449aa6be12d03643b1, type: 3}
       propertyPath: <Max>k__BackingField.value
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 507459175896980800, guid: ccace6b02ce005449aa6be12d03643b1, type: 3}
       propertyPath: <Current>k__BackingField.value
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 863221260216910358, guid: ccace6b02ce005449aa6be12d03643b1, type: 3}
       propertyPath: m_Name
@@ -78,14 +78,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 863221260216910358, guid: ccace6b02ce005449aa6be12d03643b1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4298568866706182910}
+      addedObject: {fileID: 615511824276743711}
   m_SourcePrefab: {fileID: 100100000, guid: ccace6b02ce005449aa6be12d03643b1, type: 3}
 --- !u!1 &5200097551347849153 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 863221260216910358, guid: ccace6b02ce005449aa6be12d03643b1, type: 3}
   m_PrefabInstance: {fileID: 4886601318711219671}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4298568866706182910
+--- !u!114 &615511824276743711
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,8 +94,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5200097551347849153}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d79c5ba6f41aad44391fc7cb9a956429, type: 3}
+  m_Script: {fileID: 11500000, guid: 2209f1bc2dc57fa4d83d46ff7b66beee, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Main::DummyEnemy
+  m_EditorClassIdentifier: Main::Enemy
+  FollowsPlayer: 1
+  Speed: 1
+  DamageAmount: 1
   lastAttackTime: 0
-  <AttackCooldown>k__BackingField: 1
+  <AttackCooldown>k__BackingField: 0.5
