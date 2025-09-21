@@ -53,7 +53,10 @@ class SkillTreeSkillButton : MonoBehaviour
             {
                 IsUnlocked.Value = true;
                 playerStateManager.SpentSkillPoints.Value += Cost;
-                var weapon = GameObject.Find(WeaponName).GetComponent<Weapon>();
+                var weapon = FindObjectsByType<Weapon>(
+                    FindObjectsInactive.Include,
+                    FindObjectsSortMode.None
+                ).First(o => o.name == WeaponName);
                 playerWeaponManager.EquipAndUpgradeWeapon(weapon);
             })
             .AddTo(this);
