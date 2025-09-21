@@ -61,7 +61,7 @@ abstract class Enemy : MonoBehaviour
             var direction = (playersRoot.transform.position - transform.position).normalized;
 
             var hasKnockbackEffector = KnockBackEffectors.Any(effector => effector != null);
-            if (hasKnockbackEffector) direction = -direction;
+            if (hasKnockbackEffector) direction *= -4;
 
             transform.Translate(Speed * Time.deltaTime * direction);
         }

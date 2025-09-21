@@ -14,15 +14,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5635902555790052787, guid: 18daf248da1d8834fbaa246faf40d0d8, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
-      value: -0.07692308
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5635902555790052787, guid: 18daf248da1d8834fbaa246faf40d0d8, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5635902555790052787, guid: 18daf248da1d8834fbaa246faf40d0d8, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: -5635902555790052787, guid: 18daf248da1d8834fbaa246faf40d0d8, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.3
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: -5635902555790052787, guid: 18daf248da1d8834fbaa246faf40d0d8, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.43333334
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: -2560032801921224253, guid: 18daf248da1d8834fbaa246faf40d0d8, type: 3}
       propertyPath: m_Sprite
@@ -31,6 +39,18 @@ PrefabInstance:
     - target: {fileID: -2560032801921224253, guid: 18daf248da1d8834fbaa246faf40d0d8, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444290895497054934, guid: 18daf248da1d8834fbaa246faf40d0d8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444290895497054934, guid: 18daf248da1d8834fbaa246faf40d0d8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444290895497054934, guid: 18daf248da1d8834fbaa246faf40d0d8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1444290895497054934, guid: 18daf248da1d8834fbaa246faf40d0d8, type: 3}
       propertyPath: m_LocalPosition.x
