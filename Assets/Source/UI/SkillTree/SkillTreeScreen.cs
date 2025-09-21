@@ -29,7 +29,8 @@ class SkillTreeCanvas : MonoBehaviour
             h => toggleSkillTreeAction.performed += h,
             h => toggleSkillTreeAction.performed -= h
         )
-            .Scan(false, (isOpen, _) => !isOpen);
+            .Scan(false, (isOpen, _) => !isOpen)
+            .Prepend(false);
 
         var playerDeathConditions = GameObject.FindGameObjectsWithTag("Player")
             .Select(p => p.GetComponent<Health>())
@@ -53,9 +54,10 @@ class SkillTreeCanvas : MonoBehaviour
             (
                 isOpenFromKey, canSpend,
                 allUnlocked, gameOver
-            ) => isOpenFromKey || gameOver || (canSpend && !allUnlocked)
-        )
+            ) => isOpenFromKey || gameOver || (canSpend && !allUnlocked))
+            .Do(isOpen => Debug.Log($"Skill Tree Open: {isOpen}"))
             .DistinctUntilChanged()
+            .Do(isOpen => Debug.Log($"Skill Tree Open2: {isOpen}"))
             .Subscribe(isOpen =>
             {
                 if (isOpen)

@@ -887,10 +887,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Main::EnemySpawner
   HardModeTreshold: 25000
-  SpawnIntervalBase: 2.5
-  SpawnIntervalPerScore: -0.05
-  SpawnCountBase: 1
-  SpawnCountPerScore: 0.1
+  SpawnInterval: 3
+  SpawnCount: 2
+  HpPer10Score: 10
   EnemiesToSpawn:
   - {fileID: 278745159998072047, guid: f79c569e4941839418d37af59e7e3843, type: 3}
   - {fileID: 278745159998072047, guid: d6a74f6f482923c41a7da604b62f0818, type: 3}
@@ -2209,8 +2208,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Main::SkillTreeCanvas
   canvas: {fileID: 3792008858265905797}
   <AnimationDuration>k__BackingField: 0.5
-  <IsOpen>k__BackingField:
-    value: 0
   <GameOverText>k__BackingField: {fileID: 969390585}
 --- !u!224 &441176129
 RectTransform:
@@ -5758,7 +5755,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &850268806573101770
 MonoBehaviour:
   m_ObjectHideFlags: 0
