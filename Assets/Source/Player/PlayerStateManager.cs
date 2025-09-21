@@ -23,7 +23,7 @@ class PlayerStateManager : MonoBehaviour
         Observable.CombineLatest(Level, SpentSkillPoints)
             .Select(t => t[0] > t[1]);
 
-    public static int MaxXpForLevel(int level) => (int)Mathf.Pow(100, level);
+    public static int MaxXpForLevel(int level) => (level + 1) * 100;
 
     public Observable<bool> IsEverySkillUnlocked { get; private set; }
 

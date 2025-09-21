@@ -45,6 +45,8 @@ class SkillTreeCanvas : MonoBehaviour
 
         var psm = Helpers.FindRequired<PlayerStateManager>();
 
+        isGameOver.Subscribe(ig => Debug.Log($"Game Over: {ig}")).AddTo(this);
+
         Observable.CombineLatest(
             isOpenFromKey, psm.CanSpendSkillPoint,
             psm.IsEverySkillUnlocked, isGameOver,
@@ -64,6 +66,11 @@ class SkillTreeCanvas : MonoBehaviour
                 // Pause the game when the skill tree is open
                 Time.timeScale = isOpen ? 0f : 1f;
             })
+            .AddTo(this);
+
+        isGameOver
+            .DistinctUntilChanged()
+            .Subscribe(ig => GameOverText.SetActive(ig))
             .AddTo(this);
     }
 
