@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations;
+using NaughtyAttributes;
 using UnityEngine;
 
 abstract class Weapon : MonoBehaviour
@@ -8,8 +8,10 @@ abstract class Weapon : MonoBehaviour
 
     public bool IsEquipped => Tier != 0;
 
+    [field: SerializeField, ReadOnly]
     public int Tier { get; set; } = 0;
 
+    [ShowNativeProperty]
     public float Cooldown => TieredAdditive(CooldownBase, -CooldownTiered);
 
     [field: SerializeField]
@@ -40,14 +42,14 @@ abstract class Weapon : MonoBehaviour
 
     // Calculation helpers for tiered stats
     protected float TieredMultiplicative(float baseValue, float perTier) =>
-        baseValue * Mathf.Pow(perTier, Tier - 1);
+        baseValue * Mathf.Pow(perTier, Tier);
 
     protected float TieredAdditive(float baseValue, float perTier) =>
-        baseValue + perTier * (Tier - 1);
+        baseValue + perTier * Tier;
 
     protected float TieredLogarithmic(float baseValue, float perTier) =>
         baseValue + perTier * Mathf.Log(Tier);
 
     protected float TieredExponential(float baseValue, float perTier) =>
-        baseValue * Mathf.Exp(perTier * (Tier - 1));
+        baseValue * Mathf.Exp(perTier * Tier);
 }

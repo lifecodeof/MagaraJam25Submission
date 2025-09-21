@@ -25,8 +25,6 @@ class SkillTreeCanvas : MonoBehaviour
 
         IsOpen.DistinctUntilChanged().Subscribe(isOpen =>
         {
-            Debug.Log($"Skill tree is now {(isOpen ? "open" : "closed")}");
-
             if (isOpen)
                 CloseToOpen();
             else
