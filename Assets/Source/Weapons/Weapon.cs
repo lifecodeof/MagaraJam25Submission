@@ -10,8 +10,16 @@ abstract class Weapon : MonoBehaviour
 
     public int Tier { get; set; } = 0;
 
+    public float Cooldown => TieredAdditive(CooldownBase, -CooldownTiered);
+
     [field: SerializeField]
-    public float Cooldown { get; private set; } = 1f;
+    public float ProjectileOffset { get; private set; } = 2f;
+
+    [field: SerializeField]
+    public float CooldownBase { get; private set; } = 1f;
+
+    [field: SerializeField]
+    public float CooldownTiered { get; private set; } = 1f;
 
     public float LastFireTime { get; private set; } = 0f;
 
@@ -26,7 +34,8 @@ abstract class Weapon : MonoBehaviour
 
     protected virtual void OnFire(Quaternion direction)
     {
-        Instantiate(projectilePrefab, transform.position, direction * Quaternion.Euler(0, 0, 90));
+        var spawnPosition = transform.position + direction * Vector3.up * ProjectileOffset;
+        Instantiate(projectilePrefab, spawnPosition, direction * Quaternion.Euler(0, 0, 90));
     }
 
     // Calculation helpers for tiered stats
