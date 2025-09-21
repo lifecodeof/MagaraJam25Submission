@@ -5,19 +5,11 @@ using UnityEngine;
 class EnemySpawner : MonoBehaviour
 {
     public int HardModeTreshold = 25_000;
-
-    public float SpawnIntervalBase = 5f;
-    public float SpawnIntervalPerScore = -0.05f;
-    [ShowNativeProperty]
-    public float SpawnInterval => Mathf.Max(0.5f, SpawnIntervalBase + score % HardModeTreshold * SpawnIntervalPerScore);
-
-    public float SpawnCountBase = 1;
-    public float SpawnCountPerScore = 0.1f;
+    public float SpawnInterval = 3f;
+    public int SpawnCount = 2;
+    public int HpPer10Score = 10;
 
     public List<Enemy> EnemiesToSpawn = new();
-
-    [ShowNativeProperty]
-    public int SpawnCount => Mathf.Max(1, Mathf.FloorToInt(SpawnCountBase + score % HardModeTreshold * SpawnCountPerScore));
 
     [field: SerializeField]
     public float LastSpawnTime { get; private set; } = 0f;
@@ -95,6 +87,8 @@ class EnemySpawner : MonoBehaviour
 
             var clamped = ClampToArenaBounds(spawnPoint);
             var enemy = Instantiate(enemyPrefab, clamped, Quaternion.identity);
+            var health = enemy.GetComponent<Health>();
+            health.Max.Value = health.Current.Value = Mathf.CeilToInt((1 + score) / 10f) * HpPer10Score;
             arena.RegisterEnemy(enemy);
         }
     }

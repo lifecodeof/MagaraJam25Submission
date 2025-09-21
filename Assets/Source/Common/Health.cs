@@ -15,13 +15,4 @@ class Health : MonoBehaviour
 
     // Faster access for non-reactive checks
     public bool IsDeadValue => IsDead.CurrentValue;
-
-    void Awake()
-    {
-        // Clamp current health to max health on change
-        Max
-            .Where(max => Current.Value > max) // Prevent unnecessary changes
-            .Subscribe(max => Current.Value = Mathf.Min(Current.Value, max))
-            .AddTo(this);
-    }
 }

@@ -15,10 +15,9 @@ class SkillTreeCanvas : MonoBehaviour
     public float AnimationDuration { get; private set; } = 0.5f;
 
     [field: SerializeField]
-    public SerializableReactiveProperty<bool> IsOpen { get; private set; }
-
-    [field: SerializeField]
     public GameObject GameOverText { get; private set; }
+
+    public Observable<bool> IsOpen { get; private set; }
 
     private RectTransform panelRectTransform;
 
@@ -26,12 +25,11 @@ class SkillTreeCanvas : MonoBehaviour
     {
         var toggleSkillTreeAction = InputSystem.actions.FindAction("Toggle Skill Tree");
         toggleSkillTreeAction.Enable();
-        Observable.FromEvent<InputAction.CallbackContext>(
+        var isOpenFromKey = Observable.FromEvent<InputAction.CallbackContext>(
             h => toggleSkillTreeAction.performed += h,
             h => toggleSkillTreeAction.performed -= h
         )
-            .Subscribe(_ => IsOpen.Value = !IsOpen.Value)
-            .AddTo(this);
+            .Scan(false, (isOpen, _) => !isOpen);
 
         var playerDeathConditions = GameObject.FindGameObjectsWithTag("Player")
             .Select(p => p.GetComponent<Health>())
@@ -48,9 +46,12 @@ class SkillTreeCanvas : MonoBehaviour
         var psm = Helpers.FindRequired<PlayerStateManager>();
 
         Observable.CombineLatest(
-            psm.CanSpendSkillPoint, psm.IsEverySkillUnlocked,
-             isGameOver,
-            (canSpend, allUnlocked, gameOver) => (canSpend && !allUnlocked) || gameOver
+            isOpenFromKey, psm.CanSpendSkillPoint,
+            psm.IsEverySkillUnlocked, isGameOver,
+            (
+                isOpenFromKey, canSpend,
+                allUnlocked, gameOver
+            ) => isOpenFromKey || gameOver || (canSpend && !allUnlocked)
         )
             .DistinctUntilChanged()
             .Subscribe(isOpen =>
