@@ -10,23 +10,47 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5635902555790052787, guid: 18daf248da1d8834fbaa246faf40d0d8, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
-      value: -0.07692308
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5635902555790052787, guid: 18daf248da1d8834fbaa246faf40d0d8, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5635902555790052787, guid: 18daf248da1d8834fbaa246faf40d0d8, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: -5635902555790052787, guid: 18daf248da1d8834fbaa246faf40d0d8, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.3
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: -5635902555790052787, guid: 18daf248da1d8834fbaa246faf40d0d8, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.43333334
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: -2560032801921224253, guid: 18daf248da1d8834fbaa246faf40d0d8, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -877063278407687628, guid: a970058aa1bbcf049a21d2d007e170a1, type: 3}
     - target: {fileID: -2560032801921224253, guid: 18daf248da1d8834fbaa246faf40d0d8, type: 3}
+      propertyPath: m_Color.a
+      value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: -2560032801921224253, guid: 18daf248da1d8834fbaa246faf40d0d8, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444290895497054934, guid: 18daf248da1d8834fbaa246faf40d0d8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444290895497054934, guid: 18daf248da1d8834fbaa246faf40d0d8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444290895497054934, guid: 18daf248da1d8834fbaa246faf40d0d8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1444290895497054934, guid: 18daf248da1d8834fbaa246faf40d0d8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -98,4 +122,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Main::AirProjectile
   Lifetime: 10
-  Speed: 5
+  Speed: 10

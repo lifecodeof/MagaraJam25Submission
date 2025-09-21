@@ -8,7 +8,7 @@ abstract class Weapon : MonoBehaviour
 
     public bool IsEquipped => Tier != 0;
 
-    [field: SerializeField, ReadOnly]
+    [field: SerializeField]
     public int Tier { get; set; } = 0;
 
     [ShowNativeProperty]
