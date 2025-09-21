@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using NaughtyAttributes;
 using R3;
@@ -24,6 +25,8 @@ class SkillTreeCanvas : MonoBehaviour
 
         IsOpen.DistinctUntilChanged().Subscribe(isOpen =>
         {
+            Debug.Log($"Skill tree is now {(isOpen ? "open" : "closed")}");
+
             if (isOpen)
                 CloseToOpen();
             else
@@ -31,12 +34,12 @@ class SkillTreeCanvas : MonoBehaviour
 
             // Pause the game when the skill tree is open
             Time.timeScale = isOpen ? 0f : 1f;
-        });
+        }).AddTo(this);
     }
 
     private void CloseToOpen()
     {
-        canvas.gameObject.SetActive(true);
+        panelRectTransform.gameObject.SetActive(true);
         panelRectTransform
             .DOScale(canvasOriginalScale, AnimationDuration)
             .SetEase(Ease.OutBack)
@@ -50,7 +53,7 @@ class SkillTreeCanvas : MonoBehaviour
             .DOScale(Vector3.zero, AnimationDuration)
             .SetEase(Ease.InBack)
             .From(canvasOriginalScale, true)
-            .OnComplete(() => canvas.gameObject.SetActive(false))
-            .SetUpdate(true); // Ignore timeScale
+            .SetUpdate(true) // Ignore timeScale
+            .OnComplete(() => panelRectTransform.gameObject.SetActive(false));
     }
 }
