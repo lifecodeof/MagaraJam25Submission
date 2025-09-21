@@ -15,6 +15,8 @@ class EnemySpawner : MonoBehaviour
     public float SpawnCountBase = 1;
     public float SpawnCountPerScore = 0.1f;
 
+    public List<Enemy> EnemiesToSpawn;
+
     [ShowNativeProperty]
     public int SpawnCount => psm?.Score.Value is int score
         ? Mathf.Max(1, Mathf.FloorToInt(SpawnCountBase + score * SpawnCountPerScore))
