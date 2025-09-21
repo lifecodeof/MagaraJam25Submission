@@ -1,34 +1,48 @@
 using System.Collections.Generic;
+using NaughtyAttributes;
 using R3;
 using UnityEngine;
 
-// TODO: Make spawn rate scale with time survived and player level
-
 class EnemySpawner : MonoBehaviour
 {
-    public SerializableReactiveProperty<float> SpawnInterval = new(5f);
-    public SerializableReactiveProperty<int> SpawnCount = new(1);
+    public float SpawnIntervalBase = 5f;
+    public float SpawnIntervalPerScore = -0.05f;
+    [ShowNativeProperty]
+    public float SpawnInterval => psm?.Score.Value is int score
+        ? Mathf.Max(0.5f, SpawnIntervalBase + score * SpawnIntervalPerScore)
+        : SpawnIntervalBase;
+
+    public float SpawnCountBase = 1;
+    public float SpawnCountPerScore = 0.1f;
+
+    [ShowNativeProperty]
+    public int SpawnCount => psm?.Score.Value is int score
+        ? Mathf.Max(1, Mathf.FloorToInt(SpawnCountBase + score * SpawnCountPerScore))
+        : Mathf.FloorToInt(SpawnCountBase);
+
+    [field: SerializeField]
+    public float LastSpawnTime { get; private set; } = 0f;
 
     [SerializeField] private Enemy enemyPrefab;
 
     private Camera mainCamera;
     private Arena arena;
+    private PlayerStateManager psm;
 
-    private void Start()
+    void Start()
     {
         mainCamera = Camera.main;
         arena = Helpers.FindRequired<Arena>();
+        psm = Helpers.FindRequired<PlayerStateManager>();
+    }
 
-        SpawnEnemies(SpawnCount.Value);
-
-        // Spawn enemies
-        // Of course, this could be done with update function, but this handles every property change.
-        SpawnInterval
-            // For each interval change, create a new interval observable
-            .Select(interval => Observable.Interval(System.TimeSpan.FromSeconds(interval)))
-            .Switch() // Flatten the nested observables (so we can handle subscriptions and disposal for both at the same time)
-            .Subscribe(_ => SpawnEnemies(SpawnCount.Value)) // Call SpawnEnemies on each interval tick
-            .AddTo(this); // Dispose on destroy
+    void Update()
+    {
+        if (Time.time - LastSpawnTime >= SpawnInterval)
+        {
+            SpawnEnemies(SpawnCount);
+            LastSpawnTime = Time.time;
+        }
     }
 
     private IEnumerable<Vector2> GetRandomPointsOnCameraBorder(int count)
