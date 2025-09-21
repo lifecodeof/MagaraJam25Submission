@@ -45,23 +45,4 @@ class Arena : MonoBehaviour
             }
         }
     }
-
-    /// <returns>nullable</returns>
-    public Enemy FindClosestEnemy(Vector2 position)
-    {
-        Enemy closest = null;
-        float closestDistSqr = float.MaxValue;
-
-        foreach (var enemy in enemies)
-        {
-            var distSqr = (enemy.transform.position - (Vector3)position).sqrMagnitude;
-            if (distSqr < closestDistSqr)
-            {
-                closest = enemy;
-                closestDistSqr = distSqr;
-            }
-        }
-
-        return closest;
-    }
 }

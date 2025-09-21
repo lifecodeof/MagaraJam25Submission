@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using NaughtyAttributes;
 using UnityEngine;
 
 class EnemySpawner : MonoBehaviour
 {
-    public int HardModeTreshold = 25_000;
+    public int HardModeTreshold = 500;
     public float SpawnInterval = 3f;
     public int SpawnCount = 2;
     public int HpPer10Score = 10;
@@ -17,13 +16,11 @@ class EnemySpawner : MonoBehaviour
     private int score => psm?.Score.Value ?? 0;
 
     private Camera mainCamera;
-    private Arena arena;
     private PlayerStateManager psm;
 
     void Start()
     {
         mainCamera = Camera.main;
-        arena = Helpers.FindRequired<Arena>();
         psm = Helpers.FindRequired<PlayerStateManager>();
     }
 
@@ -65,17 +62,6 @@ class EnemySpawner : MonoBehaviour
         }
     }
 
-    private Vector2 ClampToArenaBounds(Vector2 point)
-    {
-        var extents = arena.Extents;
-        var center = arena.Center;
-
-        var clampedX = Mathf.Clamp(point.x, center.x - extents.x, center.x + extents.x);
-        var clampedY = Mathf.Clamp(point.y, center.y - extents.y, center.y + extents.y);
-
-        return new Vector2(clampedX, clampedY);
-    }
-
     private void SpawnEnemies(int count = 1)
     {
         foreach (var spawnPoint in GetRandomPointsOnCameraBorder(count))
@@ -85,11 +71,9 @@ class EnemySpawner : MonoBehaviour
                 : 0;
             var enemyPrefab = EnemiesToSpawn[index];
 
-            var clamped = ClampToArenaBounds(spawnPoint);
-            var enemy = Instantiate(enemyPrefab, clamped, Quaternion.identity);
+            var enemy = Instantiate(enemyPrefab, spawnPoint, Quaternion.identity);
             var health = enemy.GetComponent<Health>();
             health.Max.Value = health.Current.Value = Mathf.CeilToInt((1 + score) / 10f) * HpPer10Score;
-            arena.RegisterEnemy(enemy);
         }
     }
 }

@@ -15,12 +15,8 @@ class SinglePlayerWeaponManager : MonoBehaviour
     // This is the reactive equivalent of an event.
     private readonly Subject<Unit> equippedWeaponsChanged = new();
 
-    private Arena arena;
-
     void Awake()
     {
-        arena = Helpers.FindRequired<Arena>();
-
         // Handle weapon direction updates
         Observable.CombineLatest(
             WeaponsTarget, equippedWeaponsChanged,
@@ -39,7 +35,7 @@ class SinglePlayerWeaponManager : MonoBehaviour
 
     void Update()
     {
-        var enemy = arena.FindClosestEnemy(transform.position);
+        var enemy = FindClosestEnemy(transform.position);
         if (enemy != null)
         {
             WeaponsTarget.Value = enemy.transform.position;
@@ -48,6 +44,25 @@ class SinglePlayerWeaponManager : MonoBehaviour
                 weapon.Fire();
             }
         }
+    }
+
+        /// <returns>nullable</returns>
+    public Enemy FindClosestEnemy(Vector2 position)
+    {
+        Enemy closest = null;
+        float closestDistSqr = float.MaxValue;
+
+        foreach (var enemy in FindObjectsByType<Enemy>(FindObjectsSortMode.None))
+        {
+            var distSqr = (enemy.transform.position - (Vector3)position).sqrMagnitude;
+            if (distSqr < closestDistSqr)
+            {
+                closest = enemy;
+                closestDistSqr = distSqr;
+            }
+        }
+
+        return closest;
     }
 
     private IEnumerable<Vector2> DistributePointsIn2Columns(int count)

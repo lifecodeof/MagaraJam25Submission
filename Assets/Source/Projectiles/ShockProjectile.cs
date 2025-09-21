@@ -21,19 +21,22 @@ class ShockProjectile : Projectile
         if (collision.gameObject.TryGetComponent<Enemy>(out var enemy))
         {
             enemy.TakeDamage(new Damage(DamageAmount));
+            if (enemy == null) return;
 
             if (MaxChains > 0)
             {
-                var enemies = Physics2D.CircleCastAll(transform.position, ChainRadius, Vector2.zero)
+                var positions = Physics2D.CircleCastAll(transform.position, ChainRadius, Vector2.zero)
+                    .Where(hit => hit.collider != null)
                     .Select(hit => hit.collider.TryGetComponent<Enemy>(out var enemy) ? enemy : null)
                     .Where(e => e != null && e != enemy)
                     .OrderBy(e => Vector2.SqrMagnitude(e.transform.position - transform.position))
                     .Take(MaxChains)
+                    .Select(e => e.transform.position)
                     .ToList();
 
-                foreach (var nextEnemies in enemies)
+                foreach (var nextEnemyPos in positions)
                 {
-                    Vector2 direction = (nextEnemies.transform.position - transform.position).normalized;
+                    Vector2 direction = (nextEnemyPos - transform.position).normalized;
                     float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
                     var chained = Instantiate(gameObject, transform.position, Quaternion.Euler(0, 0, angle));
