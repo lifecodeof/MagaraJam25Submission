@@ -2211,7 +2211,7 @@ MonoBehaviour:
   <AnimationDuration>k__BackingField: 0.5
   <IsOpen>k__BackingField:
     value: 0
-  <GameOverText>k__BackingField: {fileID: 0}
+  <GameOverText>k__BackingField: {fileID: 969390585}
 --- !u!224 &441176129
 RectTransform:
   m_ObjectHideFlags: 0
