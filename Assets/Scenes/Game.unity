@@ -546,7 +546,7 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.23}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &87991635
@@ -969,7 +969,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 4251675552863716716, guid: 89b85ee9867c4cc4f811484d85f9a402, type: 3}
   <Tier>k__BackingField: 0
   <ProjectileOffset>k__BackingField: 2
-  <CooldownBase>k__BackingField: 1.2
+  <CooldownBase>k__BackingField: 3
   <CooldownTiered>k__BackingField: 0.2
 --- !u!212 &214857560
 SpriteRenderer:
@@ -1016,7 +1016,6 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1403400191
-  m_SortingLayer: 5
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 8937847603418314618, guid: b54dc2c2f088dbb4dbfbf5c675b5e97b, type: 3}
@@ -1290,7 +1289,6 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1403400191
-  m_SortingLayer: 5
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -1362480512284188048, guid: b54dc2c2f088dbb4dbfbf5c675b5e97b, type: 3}
@@ -3755,7 +3753,6 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1403400191
   m_SortingLayer: 5
-  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 2363060639502021293, guid: b54dc2c2f088dbb4dbfbf5c675b5e97b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3900,7 +3897,6 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1403400191
   m_SortingLayer: 5
-  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 4595650251649180974, guid: b54dc2c2f088dbb4dbfbf5c675b5e97b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4008,7 +4004,6 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1403400191
-  m_SortingLayer: 5
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 4672467958334398990, guid: b54dc2c2f088dbb4dbfbf5c675b5e97b, type: 3}
