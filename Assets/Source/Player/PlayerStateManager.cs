@@ -27,12 +27,7 @@ class PlayerStateManager : MonoBehaviour
 
     void Start()
     {
-        var health = GetComponent<Health>();
         var skillTreeScreen = Helpers.FindRequired<SkillTreeCanvas>();
-
-        health.IsDead.WhereTrue()
-            .Subscribe(_ => Debug.Log("game over"))
-            .AddTo(this);
 
         Events.EnemyKilled
             .Do(_ => Score.Value += 1)
