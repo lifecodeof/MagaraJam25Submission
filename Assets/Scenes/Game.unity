@@ -485,8 +485,8 @@ Transform:
   m_GameObject: {fileID: 87991632}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4306, y: 0.1211, z: 1}
+  m_LocalPosition: {x: 0, y: -0.51, z: 0}
+  m_LocalScale: {x: 0.73, y: 0.49, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 35690763}
@@ -535,15 +535,15 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 1244476889673583485, guid: c0a826ac844e7224b9cb96583ae28df8, type: 3}
+  m_SortingLayerID: 627569621
+  m_SortingLayer: 3
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 1262194081642128813, guid: fa6328a76344ff347850ecadcafed980, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.23}
+  m_Size: {x: 1.92, y: 0.21}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -587,8 +587,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.23}
-    newSize: {x: 0.64, y: 0.23}
+    oldSize: {x: 3, y: 0.328125}
+    newSize: {x: 1.92, y: 0.21}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -1017,7 +1017,6 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1403400191
   m_SortingLayer: 5
-  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 8937847603418314618, guid: b54dc2c2f088dbb4dbfbf5c675b5e97b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1290,7 +1289,6 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1403400191
-  m_SortingLayer: 5
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -1362480512284188048, guid: b54dc2c2f088dbb4dbfbf5c675b5e97b, type: 3}
@@ -3755,7 +3753,6 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1403400191
   m_SortingLayer: 5
-  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 2363060639502021293, guid: b54dc2c2f088dbb4dbfbf5c675b5e97b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3900,7 +3897,6 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1403400191
   m_SortingLayer: 5
-  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 4595650251649180974, guid: b54dc2c2f088dbb4dbfbf5c675b5e97b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4008,7 +4004,6 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1403400191
-  m_SortingLayer: 5
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 4672467958334398990, guid: b54dc2c2f088dbb4dbfbf5c675b5e97b, type: 3}
