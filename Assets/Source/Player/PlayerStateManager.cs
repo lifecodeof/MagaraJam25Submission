@@ -16,6 +16,9 @@ class PlayerStateManager : MonoBehaviour
     [field: SerializeField]
     public SerializableReactiveProperty<int> SpentSkillPoints { get; private set; } = new(0);
 
+    [field: SerializeField]
+    public SerializableReactiveProperty<int> Score { get; private set; } = new(0);
+
     public Observable<bool> CanSpendSkillPoint =>
         Observable.CombineLatest(Level, SpentSkillPoints)
             .Select(t => t[0] > t[1]);
@@ -32,6 +35,7 @@ class PlayerStateManager : MonoBehaviour
             .AddTo(this);
 
         Events.EnemyKilled
+            .Do(_ => Score.Value += 1)
             .Subscribe(_ => Xp.Value += 10)
             .AddTo(this);
 
