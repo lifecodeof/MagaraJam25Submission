@@ -114,3 +114,4 @@ MonoBehaviour:
   DamageAmount: 2
   ChainRadius: 10
   MaxChains: 3
+  ThisPrefab: {fileID: 4251675552863716716}

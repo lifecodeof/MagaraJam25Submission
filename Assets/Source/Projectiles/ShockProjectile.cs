@@ -8,6 +8,7 @@ class ShockProjectile : Projectile
     public int DamageAmount = 1;
     public float ChainRadius = 3f;
     public int MaxChains = 3;
+    public GameObject ThisPrefab;
 
     void Update()
     {
@@ -34,12 +35,12 @@ class ShockProjectile : Projectile
                     .Select(e => e.transform.position)
                     .ToList();
 
-                foreach (var nextEnemyPos in positions)
+                foreach (var enemyPos in positions)
                 {
-                    Vector2 direction = (nextEnemyPos - transform.position).normalized;
+                    Vector2 direction = (enemyPos - transform.position).normalized;
                     float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-                    var chained = Instantiate(gameObject, transform.position, Quaternion.Euler(0, 0, angle));
+                    var chained = Instantiate(ThisPrefab, transform.position, Quaternion.Euler(0, 0, angle));
                     chained.GetComponent<ShockProjectile>().MaxChains = MaxChains - 1;
                 }
             }
