@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 9209447476767852337}
   - component: {fileID: 3090890818031192324}
   - component: {fileID: 3151412930139025173}
-  - component: {fileID: 8287589147071173926}
   - component: {fileID: -331479088178505680}
   - component: {fileID: 2475219305514119311}
   m_Layer: 0
@@ -125,24 +124,6 @@ MonoBehaviour:
     value: 20
   <Current>k__BackingField:
     value: 20
---- !u!114 &8287589147071173926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8757152131455370546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ace7349ae588df4184f373ccfc293ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Main::PlayerStateManager
-  <Level>k__BackingField:
-    value: 0
-  <Xp>k__BackingField:
-    value: 0
-  <SpentSkillPoints>k__BackingField:
-    value: 0
 --- !u!61 &-331479088178505680
 BoxCollider2D:
   m_ObjectHideFlags: 0
