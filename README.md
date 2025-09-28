@@ -1,3 +1,5 @@
+Jam gönderi sayfası: https://magarajam.com/game/ShacklesoftheDamned
+
 # Oyun Tuşları
 
 ![game-screenshot-1](https://cdn.magarajam.com/media/1758461977060432498115860.png)
@@ -41,3 +43,4 @@ Amacın, mümkün olduğunca uzun süre hayatta kalarak büyücülerin kaderini 
 Kaçabilecek misin, yoksa zincir seni dipsiz karanlığa mı sürükleyecek?
 
 ![game-screenshot-6](https://cdn.magarajam.com/media/1758461977060432498115860.png)
+
